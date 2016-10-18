@@ -1,6 +1,6 @@
 <?php
 
-namespace maptechnica\mtapi;
+namespace MapTechnica\MTAPI;
 
 use GuzzleHttp\Client as Client;
 

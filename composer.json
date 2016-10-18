@@ -16,7 +16,7 @@
         "php": ">=5.6.10"
     },
     "psr-4": {
-        "maptechnica\\mtapi\\": "src/"
+        "MapTechnica\\MTAPI\\": "src/"
     },
     "version": "1.0.0"
 }

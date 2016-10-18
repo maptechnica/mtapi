@@ -1,6 +1,6 @@
 <?php
 
-namespace maptechnica\mtapi;
+namespace MapTechnica\MTAPI;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

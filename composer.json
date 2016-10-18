@@ -1,0 +1,22 @@
+{
+    "name": "maptechnica/mtapi",
+    "description": "IGNORE THIS PACKAGE. This package is under developent and should not be used yet.",
+    "homepage": "https://www.maptechnica.com",
+    "keywords": [],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Steve Stringer",
+            "email": "steve@maptechnica.com",
+            "homepage": "https://www.maptechnica.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.10"
+    },
+    "psr-4": {
+        "maptechnica\\mtapi\\": "src/"
+    },
+    "version": "1.0.0"
+}

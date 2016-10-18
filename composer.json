@@ -15,8 +15,10 @@
     "require": {
         "php": ">=5.6.10"
     },
-    "psr-4": {
-        "MapTechnica\\MTAPI\\": "src/"
+    "autoload": {
+    		"psr-4": {
+        		"MapTechnica\\MTAPI\\": "src/"
+        }
     },
     "version": "1.0.0"
 }

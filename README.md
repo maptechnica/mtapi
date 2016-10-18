@@ -36,13 +36,13 @@ composer require maptechnica\mtapi
 After updating composer, add the ServiceProvider to the providers array in config/app.php:
 
 ```php
-maptechnica\mtapi\MapTechnicaAPIServiceProvider::class,
+MapTechnica\MTAPI\MTAPIServiceProvider::class,,
 ```
 
 Add an alias to config/app.php:
 
 ```php
-'MTAPI' => maptechnica\mtapi\Facade::class,
+'MTAPI' => MapTechnica\MTAPI\MTAPIDataRetriever::class,
 ```
 
 Next, move the config file into the correct place. From your project's root directory, type:
@@ -64,13 +64,13 @@ MAPTECHNICA_API_URL=http://api.maps3.dev
 For Lumen, register the service provider in `bootstrap/app.php`:
 
 ```php
-$app->register(maptechnica\mtapi\MapTechnicaAPIServiceProvider::class);
+$app->register(MapTechnica\MTAPI\MTAPIServiceProvider::class);
 ```
 
 To use the service provider in Lumen, import the facade each time:
 
 ```php
-use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
+use MapTechnica\MTAPI\MTAPIDataRetriever;
 ```
 
 ## Post-Installation

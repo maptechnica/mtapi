@@ -1,6 +1,13 @@
 # MapTechnicaAPI
 *Current stable version: 1.0.2*
 
+> #### Note:
+Please note that while this package is ready to go, the API key system is not quite ready.  We hope to have it ready to go soon.  If you wish to be notified when the API is formally launched, sign up to this list:
+
+[http://eepurl.com/b0y8Mn](http://eepurl.com/b0y8Mn)
+
+We promise not to spam you.
+
 ## Overview
 `mtapi` is a composer package that lets you easily access the MapTechnica API from your Laravel application.  The MapTechnica API ("MT API") lets you retrieve GIS boundary, meta, and centroid data for the following geotypes:
 

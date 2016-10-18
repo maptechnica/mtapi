@@ -96,10 +96,9 @@ class MTAPIDataRetriever implements iMTAPIDataRetriever
 
         $constructedURL = $baseURL.$geotype.'/'.$getType.'/?'.http_build_query($params);
 
-        $guzzleClient = new Client(['verify' => false ]);
-        $json = $guzzleClient->get($constructedURL)->getBody()->getContents();
+        $results = self::curly($constructedURL);
 
-        return $json;
+        return $results;
     }
 
     public static function search($paramsArr)
@@ -128,7 +127,7 @@ class MTAPIDataRetriever implements iMTAPIDataRetriever
         
     }
 
-    private static function curl($url)
+    private static function curly($url)
     {
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);

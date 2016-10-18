@@ -1,14 +1,19 @@
 # MapTechnicaAPI
+*Current stable version: 1.0.2*
+
 ## Overview
 `mtapi` is a composer package that lets you easily access the MapTechnica API from your Laravel application.  The MapTechnica API ("MT API") lets you retrieve GIS boundary, meta, and centroid data for the following geotypes:
 
-* US ZIP Codes (ZCTA5s)
-* ZIP Code Prefixes (ZIP3s)
-* US Census Bureau Cities & Places
-* Counties
-* Congressional Districts
-* School Districts
-* Canadian FSAs and Provinces
+* US Census Bureau Data:
+	* ZIP Codes (ZCTA5s)
+	* 3-Digit ZIP Code Prefixes (ZCTA3s)
+	* Cities & Places
+	* Counties
+	* Congressional Districts for the current session
+	* School Districts
+* Canadian Boundary Data
+	* FSAs (the three-character postal code prefix)
+	* Provinces
 
 You can see this data in action and learn more about the MapTechnica API on [MapTechnica.com](https://www.maptechnica.com).
 
@@ -36,7 +41,7 @@ composer require maptechnica\mtapi
 After updating composer, add the ServiceProvider to the providers array in config/app.php:
 
 ```php
-MapTechnica\MTAPI\MTAPIServiceProvider::class,,
+MapTechnica\MTAPI\MTAPIServiceProvider::class,
 ```
 
 Add an alias to config/app.php:
@@ -45,32 +50,30 @@ Add an alias to config/app.php:
 'MTAPI' => MapTechnica\MTAPI\MTAPIDataRetriever::class,
 ```
 
-Next, move the config file into the correct place. From your project's root directory, type:
+Next, move the config file into the `config` directory. From your project's root directory, type:
 
 ```shell
 php artisan vendor:publish
 ```
 
-Open 
-Open your `.env` file and add the following variables:
+Now you have a choice. You can either directly alter the values in your `config\mtapi.php` file as follows:
+
+*From:*
 
 ```php
-MAPTECHNICA_API_KEY=PoQcE7sKcXjCgkEaJsLF5Lwb7ByhqXJYoAFpppAIt1C3ABp3Uqm4lXYxjo62Frj
-MAPTECHNICA_API_VERSION=1
-MAPTECHNICA_API_URL=http://api.maps3.dev
+'apiKey'         => env('MAPTECHNICA_API_KEY', NULL),
 ```
 
-### Lumen:
-For Lumen, register the service provider in `bootstrap/app.php`:
+*To:*
 
 ```php
-$app->register(MapTechnica\MTAPI\MTAPIServiceProvider::class);
+'apiKey'         => env('MAPTECHNICA_API_KEY', '[YOUR_API_KEY]'),
 ```
 
-To use the service provider in Lumen, import the facade each time:
+Or, if you're in an environment that requires different keys based on your server location, leave `config\mtapi.php` as-is and open your `.env` file and add the following variable instead
 
 ```php
-use MapTechnica\MTAPI\MTAPIDataRetriever;
+MAPTECHNICA_API_KEY=[YOUR_API_KEY]
 ```
 
 ## Post-Installation
@@ -79,7 +82,19 @@ Once Composer has done its thing, and assuming your Laravel app is up and runnin
 ```html
 http://yourapp/__mtapi
 ```
-...in your browser.
+...in your browser. You should see a links page.
+
+### Check Your Installation
+Click the "Check Installation" button to insure your variables are set correctly and the API is responding to your requests.
+
+### Learning the API
+Click the "API Documentation" button to view a Swagger playground and documentation for the API.
+
+### Getting Help
+There are several resources available to you if you run into trouble:
+
+* **Developer Forum** - Ask for help and share solutions with your fellow developers at [http://forum.maptechnica.com/](http://forum.maptechnica.com/)
+* **MapTechnica Support** - If you have found a bug or have encountered a problem not solved by the Forum, you can open a support ticket at [http://help.maptechnica.com/](http://help.maptechnica.com/).  Note that debugging your application is outside the scope of support for the API, so please limit your issues to bugs encountered with the API itself.
 
 
 ## Links

@@ -1,6 +1,8 @@
 <?php
  
 namespace MapTechnica\MTAPI;
+
+use Illuminate\Support\Facades\Cache;
    
 class MTAPIDataRetriever implements iMTAPIDataRetriever
 {
@@ -15,13 +17,10 @@ class MTAPIDataRetriever implements iMTAPIDataRetriever
      * @param mixed $orderRelatedBy (default: null) - Sort results by related entities’ distance (default if null), population, or physical size: [null or dist] | pop | size
      * @param mixed $schoolDistrictType (default: null) elsd | scsd | unsd
      * @param string $lod (default: 'low') high | med | low
-     * @return void
+     * @return JSON string containing results.
      */
     public static function retrieveData($geotype=null, $geoid=null, $getType=null, $relatedTo=null, $orderRelatedBy=null, $schoolDistrictType=null, $lod='low')
     {
-        $key = 'mdr_'.uniqid();
-        $label = implode('|', func_get_args());
-
         $baseURL = self::getAPIURL();
 
         if ($baseURL==null) {
@@ -40,63 +39,72 @@ class MTAPIDataRetriever implements iMTAPIDataRetriever
             return json_encode(['error'=>true, 'code'=>'101', 'msg'=>'Missing getType']);
         }
 
-        // Get boundary info
-        $params = [
-            'geoid'=>$geoid
-        ];
+        // Get cached response, if exists. Make API call if it doesn't.
+        $cacheKey   = implode('|', func_get_args());
+        $expiration = config('mtapi.apiCacheExpiration');
+        
+        $results = Cache::remember($cacheKey, $expiration, function() use ($baseURL, $geotype, $geoid, $getType, $relatedTo, $orderRelatedBy, $schoolDistrictType, $lod) {
 
-        switch ($geotype) {
-            case('cd'):
-                break;
-            case('city'):
-            case('place'):
-                $geotype = 'place';
-                break;
-            case('province'):
-                $params = [
-                    'province'=>strtoupper($geoid)
-                ];
-                break;
-            case('fsa'):
-                $params = [
-                    'fsa'=>strtoupper($geoid)
-                ];
-                break;
-            case('sd'):
-                $geotype = $schoolDistrictType;
-                break;
-            case('state'):
-                $params = [
-                    'stusps'=>strtoupper($geoid)
-                ];
-                break;
-            case('zip3'):
-                $params = [
-                    'zip3'=>$geoid
-                ];
-                break;
-            case('zip5'):
-                $params = [
-                    'zip5'=>$geoid
-                ];
-                break;
-        }
-
-        if ($lod!='low') {
-            $params['lod'] = $lod;
-        }
-
-        if ($getType=='related' && $relatedTo!=null) {
-            $params['to'] = $relatedTo;
-            if($orderRelatedBy!=null && in_array($orderRelatedBy, ['pop', 'size', 'dist']))
-            {
-              $params['orderby'] = $orderRelatedBy;
+            // Get boundary info
+            $params = [
+                'geoid'=>$geoid
+            ];
+    
+            switch ($geotype) {
+                case('cd'):
+                    break;
+                case('city'):
+                case('place'):
+                    $geotype = 'place';
+                    break;
+                case('province'):
+                    $params = [
+                        'province'=>strtoupper($geoid)
+                    ];
+                    break;
+                case('fsa'):
+                    $params = [
+                        'fsa'=>strtoupper($geoid)
+                    ];
+                    break;
+                case('sd'):
+                    $geotype = $schoolDistrictType;
+                    break;
+                case('state'):
+                    $params = [
+                        'stusps'=>strtoupper($geoid)
+                    ];
+                    break;
+                case('zip3'):
+                    $params = [
+                        'zip3'=>$geoid
+                    ];
+                    break;
+                case('zip5'):
+                    $params = [
+                        'zip5'=>$geoid
+                    ];
+                    break;
             }
-        }
-
-        $constructedURL = $baseURL.$geotype.'/'.$getType.'/?'.http_build_query($params);
-
-        $results = self::curly($constructedURL);
+    
+            if ($lod!='low') {
+                $params['lod'] = $lod;
+            }
+    
+            if ($getType=='related' && $relatedTo!=null) {
+                $params['to'] = $relatedTo;
+                if($orderRelatedBy!=null && in_array($orderRelatedBy, ['pop', 'size', 'dist']))
+                {
+                  $params['orderby'] = $orderRelatedBy;
+                }
+            }
+    
+            $constructedURL = $baseURL.$geotype.'/'.$getType.'/?'.http_build_query($params);
+    
+            $results = self::curly($constructedURL);
+            
+            return $results;
+        });
 
         return $results;
     }

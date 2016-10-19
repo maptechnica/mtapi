@@ -70,5 +70,24 @@ return [
     */
 
     'apiVersion' => env('MAPTECHNICA_API_VERSION', '1'),
+    
+    /*
+    |--------------------------------------------------------------------------
+    | API Cache Expiration (in minutes)
+    |--------------------------------------------------------------------------
+    |
+    | This is the length of time (in minutes) fed to Laravel's Cache API
+    | 
+    | Be aware that rate throttling is in effect and permits only 60 requests
+    | per minute. After that, the API returns an HTTP response 429 "Too Many
+    | Requests". It is highly advised that you cache all responses to your
+    | requests to minimize the liklihood that you will be throttled or cut off
+    | in extreme cases of abuse.
+    |
+    | Remember that the data reurned by the API changes very rarely.
+    |
+    */
+
+    'apiCacheExpiration' => env('MAPTECHNICA_API_CACHE_EXPIRATION', 43200),
  
 ];

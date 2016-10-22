@@ -1,8 +1,8 @@
 {
     "name": "maptechnica/mtapi",
-    "description": "IGNORE THIS PACKAGE. This package is under developent and should not be used yet.",
+    "description": "A Laravel package that allows you to access the MapTechnica API easily.",
     "homepage": "https://www.maptechnica.com",
-    "keywords": [],
+    "keywords": ["MapTechnica", "GIS", "boundaries", "boundary", "zip code", "zipcode", "zip", "zcta", "zcta5", "city", "county", "state", "congressional district", "school district", "fsa", "province"],
     "license": "MIT",
     "authors": [
         {

@@ -1,12 +1,15 @@
 # MapTechnicaAPI
-*Current stable version: 1.0.2*
 
 > #### Note:
-Please note that while this package is ready to go, the API key system is not quite ready.  We hope to have it ready to go soon.  If you wish to be notified when the API is formally launched, sign up to this list:
+Please note the MapTechnica API system is now in Beta.  If you would like to participate in the Beta program, you may sign up here:
+
+[https://www.maptechnica.com/beta-signup](https://www.maptechnica.com/beta-signup)
+
+If you wish to be notified when the API is formally launched, sign up to this list:
 
 [http://eepurl.com/b0y8Mn](http://eepurl.com/b0y8Mn)
 
-We promise not to spam you.
+(We promise not to spam you.)
 
 ## Overview
 `mtapi` is a composer package that lets you easily access the MapTechnica API from your Laravel application.  The MapTechnica API ("MT API") lets you retrieve GIS boundary, meta, and centroid data for the following geotypes:
@@ -27,14 +30,16 @@ You can see this data in action and learn more about the MapTechnica API on [Map
 > #### Note:
 Free use of this package is covered under the MIT license. However, to access the MT API, you will need to obtain a license key which is subject to its own use restrictions and fees. Visit the [Developers seciton of MapTechnica.com](https://dev.maptechnica.com) for more information.
 
-## Obtain a MapTechnica API Key
-Go to MapTechnica.com and register for an account:
+## Obtain a MapTechnica API Key (BETA)
+The API system is currently in Beta.  If you would like to participate in the Beta program, please fill out the request form here:
+
+[https://www.maptechnica.com/beta-signup](https://www.maptechnica.com/beta-signup)
+
+While you're there, go ahead and register for an account:
 
 [https://my.maptechnica.com/register](https://my.maptechnica.com/register)
 
-Once registered (or logged in), go to "[My Account](https://my.maptechnica.com/)" and click on [Subscriptions](https://my.maptechnica.com/my-subscriptions) in the sidebar and select the Developer option.
-
-Once your Developer account is set up, click on [API Keys](https://my.maptechnica.com/my-api-keys) in the sidebar and obtain an API key.
+If you are selected to participate in the Beta program, you will be contacted with API key information.
 
 ## Package Installation
 In a terminal, require the package from the root directory of your Laravel project:

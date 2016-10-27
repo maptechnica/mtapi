@@ -24,7 +24,7 @@
 */
 
 return [
- 
+
     /*
     |--------------------------------------------------------------------------
     | MapTechnica API Key
@@ -37,8 +37,8 @@ return [
     |
     */
 
-    'apiKey'         => env('MAPTECHNICA_API_KEY', NULL),
-    
+    'apiKey' => env('MAPTECHNICA_API_KEY', null),
+
     /*
     |--------------------------------------------------------------------------
     | API URL
@@ -49,8 +49,8 @@ return [
     |
     */
 
-    'apiUrl'     => env('MAPTECHNICA_API_URL', 'https://api.maptechnica.com'),
-     
+    'apiUrl' => env('MAPTECHNICA_API_URL', 'https://api.maptechnica.com'),
+
     /*
     |--------------------------------------------------------------------------
     | API Version
@@ -70,7 +70,7 @@ return [
     */
 
     'apiVersion' => env('MAPTECHNICA_API_VERSION', '1'),
-    
+
     /*
     |--------------------------------------------------------------------------
     | API Cache Expiration (in minutes)
@@ -89,5 +89,5 @@ return [
     */
 
     'apiCacheExpiration' => env('MAPTECHNICA_API_CACHE_EXPIRATION', 43200),
- 
+
 ];

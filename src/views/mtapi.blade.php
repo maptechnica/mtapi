@@ -72,7 +72,9 @@
     <h2>Checking package installation...</h2>
     
     @if($_errors)
-        <h3>There were errors. Your package has not been installed correctly. Please fix the following problem<?php if(count($errors)<>1) { echo 's'; } ?>:</h3>    
+        <h3>There were errors. Your package has not been installed correctly. Please fix the following problem<?php if (count($errors) != 1) {
+    echo 's';
+} ?>:</h3>    
         @foreach($errors as $error)
         <div class="alert alert-danger">{!! $error !!}</div>
         @endforeach
